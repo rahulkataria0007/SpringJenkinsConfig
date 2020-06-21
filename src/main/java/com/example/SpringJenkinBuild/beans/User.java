@@ -11,7 +11,7 @@ public class User {
 private int userId;
 
 @NotNull
-@Size(min = 2, max = 8)
+@Size(min = 3, max = 8)
 @Pattern(regexp = "^[A-Za-z0-9]*$")
 private String userName;
 
