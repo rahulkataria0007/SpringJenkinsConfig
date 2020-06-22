@@ -15,7 +15,8 @@ public class UserComponent {
 	
 
 static List<User> userList= new ArrayList<>();
-
+static String name="Rahul";
+	
 	 public List<User> userList(){
 		 
 		 userList.add(new User(1,"rahul","rahul#123"));
