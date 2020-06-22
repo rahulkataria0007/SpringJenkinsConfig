@@ -8,7 +8,9 @@ class SpringJenkinBuildApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.println("Test Case");
+		float square = 2 * 2;
+                float rectangle = 2 * 2;
+           assertEquals(square, rectangle);
 	}
 
 }
