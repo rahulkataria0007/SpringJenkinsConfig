@@ -2,7 +2,7 @@ package com.example.SpringJenkinBuild;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert;
 
 @SpringBootTest
 class SpringJenkinBuildApplicationTests {
@@ -11,7 +11,7 @@ class SpringJenkinBuildApplicationTests {
 	void contextLoads() {
 		float square = 2 * 2;
                 float rectangle = 2 * 2;
-           assertEquals(square, rectangle);
+                Assert.assertEquals(square, rectangle);
 	}
 
 }
