@@ -9,9 +9,9 @@ class SpringJenkinBuildApplicationTests {
 
 	@Test
 	void contextLoads() {
-	long value1=10l;
-        long value2=10l;
-        assertEquals(value1, value2);	
+	//long value1=10l;
+        //long value2=10l;
+        //assertEquals(value1, value2);	
 		
 	}
 
