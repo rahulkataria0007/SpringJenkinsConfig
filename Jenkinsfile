@@ -1,0 +1,52 @@
+node {
+    environment {
+    registry = "rahulkataria0007/repo"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
+  
+   def mvnHome
+  
+   agent { docker { image 'maven:3.3.3' } } 
+  
+   stage('Preparation') { // for display purposes
+      // Get some code from a GitHub repository
+      git 'https://github.com/rahulkataria0007/SpringJenkinsConfig.git'
+      // Get the Maven tool.
+      // ** NOTE: This 'M3' Maven tool must be configured
+      // **       in the global configuration.           
+      mvnHome = tool 'M3'
+   }
+   stage('Build') {
+      // Run the maven build
+      withEnv(["MVN_HOME=$mvnHome"]) {
+         if (isUnix()) {
+            sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+         } else {
+            bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+         }
+      }
+   }
+   stage('Results') {
+      junit '**/target/surefire-reports/TEST-*.xml'
+      archiveArtifacts 'target/*.jar'
+   }
+   
+   stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+   
+}
