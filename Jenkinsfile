@@ -7,7 +7,7 @@ node {
   
    def mvnHome
   
-   agent { docker { image 'maven:3.3.3' } } 
+    
   
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
