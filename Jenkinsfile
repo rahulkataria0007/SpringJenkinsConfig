@@ -32,7 +32,4 @@ node {
       archiveArtifacts 'target/*.jar'
    }
    
-   
-    
-   
 }
